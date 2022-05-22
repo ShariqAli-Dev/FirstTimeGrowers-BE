@@ -7,8 +7,19 @@ server.use(express.json());
 server.use(helmet());
 server.use(cors());
 
+const questionsRouter = require('./questions/questions-router');
+
+// test get call
 server.get('/', async (req, res) => {
   res.status(201).json({ message: 'shariq was here' });
+});
+
+// error handler
+server.use((err, req, res, next) => {
+  res.status(err.status || 500).json({
+    message: err.message,
+    stack: err.stack,
+  });
 });
 
 module.exports = server;
