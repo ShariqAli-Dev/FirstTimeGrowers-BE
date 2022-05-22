@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Questions = require('./questions-model');
+const { uniqueQuestion } = require('./questions-middleware');
 
 router.get('/', async (req, res, next) => {
   Questions.getQuestions()
@@ -13,11 +14,11 @@ router.get('/', async (req, res, next) => {
 
 // upload a question
 // add unique question middleware
-router.post('/', (req, res, next) => {
-  Questions.addQuestion(req.body.question)
+router.post('/', uniqueQuestion, (req, res, next) => {
+  Questions.addQuestion(req.question)
     .then((added) => {
       if (added) {
-        res.status(200).json({ message: 'succeafully added question' });
+        res.status(200).json({ message: 'succesfully added question' });
       } else {
         next({ message: 'error adding question' });
       }
