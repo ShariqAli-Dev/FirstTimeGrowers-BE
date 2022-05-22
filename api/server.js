@@ -1,13 +1,14 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
+const questionsRouter = require('./questions/questions-router');
 
 const server = express();
 server.use(express.json());
 server.use(helmet());
 server.use(cors());
 
-const questionsRouter = require('./questions/questions-router');
+server.use('/api/question', questionsRouter);
 
 // test get call
 server.get('/', async (req, res) => {
