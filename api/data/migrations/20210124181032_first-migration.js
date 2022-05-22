@@ -1,7 +1,7 @@
 const maxStringLength = 200;
 
 exports.up = async (knex) => {
-  await knex.schema.createTable('questions', (tbl) => {
+  await knex.schema.createTable('question', (tbl) => {
     tbl.increments('id');
     tbl.string('question', maxStringLength).notNullable().unique();
     tbl.string('answer', maxStringLength);
@@ -11,5 +11,5 @@ exports.up = async (knex) => {
 };
 
 exports.down = async (knex) => {
-  await knex.schema.dropTableIfExists('questions');
+  await knex.schema.dropTableIfExists('question');
 };
