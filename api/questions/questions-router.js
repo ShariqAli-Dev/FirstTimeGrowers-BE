@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const Questions = require('./questions-model');
 const { uniqueQuestion } = require('./questions-middleware');
-
 // gets all questions
 // must be admin
 router.get('/', async (req, res, next) => {
@@ -25,7 +24,6 @@ router.get('/approved', async (req, res, next) => {
     });
 });
 
-// TODO
 // get only archived questions
 // must be admin
 router.get('/archived', async (req, res, next) => {
@@ -38,6 +36,7 @@ router.get('/archived', async (req, res, next) => {
     });
 });
 
+// user can post a new question
 router.post('/', uniqueQuestion, (req, res, next) => {
   Questions.addQuestion(req.question)
     .then((added) => {
@@ -52,4 +51,9 @@ router.post('/', uniqueQuestion, (req, res, next) => {
     });
 });
 
+// TODO: admin can archive / approve a question
+
+// TODO: admin can edit a question's answer
+// in this question, the new text with the question id will be sent in the body
+router.put('/:id', (req, res, next) => {});
 module.exports = router;
