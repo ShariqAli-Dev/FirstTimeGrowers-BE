@@ -30,5 +30,17 @@ exports.seed = function (knex) {
       reason: null,
       archived: false,
     },
+    {
+      question: 'Meaning of life?',
+      answer: null,
+      reason: null,
+      archived: false,
+    },
+    {
+      question: 'huh?',
+      answer: null,
+      reason: null,
+      archived: false,
+    },
   ]);
 };
