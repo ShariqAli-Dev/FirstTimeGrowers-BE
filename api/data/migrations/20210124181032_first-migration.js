@@ -7,7 +7,6 @@ exports.up = async (knex) => {
       tbl.string('question', maxStringLength).unique();
       tbl.string('answer', maxStringLength);
       tbl.string('reason', maxStringLength);
-      tbl.boolean('archived').defaultTo(false);
     })
     .createTable('admin', (tbl) => {
       tbl.increments('id');
